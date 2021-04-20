@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+*, *:before, *:after{
+  box-sizing: border-box;
+}
+
+
+:root {
+  --main-border: #525252;
+  --main-bg-color: #202124;
+  --main-color-font: #bcc4cd;
+  --bg-light-gray: #292a2d;
+  --bg-title: #000000;
+  --color-font-button: #a5a5a5;
+}
+
+input[type=text], input[type=password]{
+  background-color: var(--main-bg-color);
+  border: none;
+  padding-left: 10px;
+  margin-left: 10px;
+  color: var(--main-color-font);
+  width: 200px;
+  height: 30px;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
+button {
+  border: none;
+  background-color: #202020;
+  color: var(--color-font-button);
+  padding: 5px 10px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  background-color: var(--main-bg-color);
+  color: var(--main-color-font);
+  height: 100vh;
+}
+
+.login-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-light-gray);
+  border: 1px solid var(--main-border);
+}
+
+.title {
+  background-color: var(--bg-title);
+  padding: 10px;
+}
+
+.title:hover {
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 30px 30px 30px;
+  /* outline: 1px dashed red; */
+}
+
+.field {
+  /* outline: 1px dashed orange; */
+  width: 250px;
+  height: 30px;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+label {
+  margin: 5px 0;
+  /* outline: 1px dotted blue; */
+
+}
+
+.icon{
+  /* outline: 1px dashed red; */
+  background-color: var(--main-bg-color);
+  height: 30px;
+  line-height: 30px;
+  padding: 0 5px;
+}
+
+.secret-messages {
+  padding: 30px;
+  border-bottom: 1px solid var(--main-border);
+}
+
+.secret-messages h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.secret-messages p span {
+  color: red;
+  font-size: .8rem;
+}
