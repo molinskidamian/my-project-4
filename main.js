@@ -23,42 +23,39 @@ eyeIcon.addEventListener('mouseup', hiddenPassword);
 const loginPanel = document.querySelector('.login-panel');
 const title = document.querySelector('.title');
 const body = document.querySelector('body');
+const myForm = document.querySelector('#my-form');
 
-const divPositionX = 550;
-const divPositionY = 350;
+let holdPointX;
+let holdPointY;
 
-loginPanel.style.top = `${divPositionY}px`;
-loginPanel.style.left = `${divPositionX}px`;
+let positionX;
+let positionY;
 
-let holdX = 0;
-let holdY = 0;
-let moveX = 0;
-let moveY = 0;
-
-function movePosition(e) {
-  moveX = e.clientX;
-  moveY = e.clientY;
-  console.log(`Pozycja X: ${holdX}`);
-  console.log(`Pozycja Y: ${holdY}`);
-  loginPanel.style.left = `${moveX}px`;
-  loginPanel.style.top = `${moveY}px`;
+function selectElement(e) {
+  holdPointX = e.offsetX;
+  holdPointY = e.offsetY;
+  positionX = e.pageX;
+  positionY = e.pageY;
+  console.log(`X: ${holdPointX}, Y: ${holdPointY}`);
+  console.log(`Page X: ${e.pageX}, Y: ${e.pageY}`);
+  console.log(`Page X: ${positionX}, Y: ${positionY}`);
+  body.addEventListener('mousemove', moveElement);
 }
 
-function startMovePanel(e) {
-  console.log(e.offsetX);
-  console.log(e.offsetY);
-  holdX = e.offsetX;
-  holdY = e.offsetY;
-
-  loginPanel.addEventListener('mousemove', movePosition);
+function moveElement(e) {
+  positionX = e.pageX;
+  positionY = e.pageY;
+  loginPanel.style.top = `${positionY - holdPointY}px`;
+  loginPanel.style.left = `${positionX - holdPointX}px`;
 }
 
-function setNewPosition() {
-  loginPanel.removeEventListener('mousemove', movePosition);
-
-  loginPanel.style.top = `${holdY + moveY}px`;
-  loginPanel.style.left = `${holdX + moveX}px`;
+function setNewPlace() {
+  loginPanel.style.top = `${positionY - holdPointY}px`;
+  loginPanel.style.left = `${positionX - holdPointX}px`;
+  console.log(`top: ${positionY + holdPointY}px`);
+  console.log(`left: ${positionX + holdPointX}px`);
+  body.removeEventListener('mousemove', moveElement);
 }
 
-loginPanel.addEventListener('mousedown', startMovePanel);
-loginPanel.addEventListener('mouseup', setNewPosition);
+title.addEventListener('mousedown', selectElement);
+loginPanel.addEventListener('mouseup', setNewPlace);
